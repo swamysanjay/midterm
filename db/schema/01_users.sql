@@ -16,12 +16,12 @@ CREATE TABLE stories (
   title VARCHAR(255) NOT NULL,
   content TEXT NOT NULL,
   status BOOLEAN NOT NULL,
-  thumbnail_url VARCHAR (255) NOT NULL,
-  author_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+  thumbnail_url VARCHAR (255) NOT NULL
 );
 
 CREATE TABLE contributions (
   id SERIAL PRIMARY KEY NOT NULL,
+  suggestion TEXT NOT NULL,
   accepted BOOLEAN NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   story_id INTEGER REFERENCES stories(id) ON DELETE CASCADE
@@ -29,7 +29,8 @@ CREATE TABLE contributions (
 
 CREATE TABLE votes (
   id SERIAL PRIMARY KEY NOT NULL,
-  vote bit,
+  vote BOOLEAN,
   story_id INTEGER REFERENCES stories(id) ON DELETE CASCADE,
-  author_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+  contribution_id INTEGER REFERENCES contributions(id) ON DELETE CASCADE,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
 );
