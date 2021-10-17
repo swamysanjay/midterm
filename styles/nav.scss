@@ -1,0 +1,36 @@
+
+
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 0 1.5em;
+  height: 100px;
+  background-color: #4056A1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  z-index: 12;
+}
+
+.story-creator {
+  font-family: "Permanent Marker";
+  font-size: 2em;
+}
+
+nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li { display: inline-block; }
+
+  a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+}
