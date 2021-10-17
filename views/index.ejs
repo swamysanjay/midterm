@@ -35,7 +35,7 @@
 <body>
   <nav>
     <div id="nav-icon-title">
-      <img id="books-icon" src="midterm/db/imgs/books.png">
+      <img id="books-icon" src="/imgs/books.png">
       <span class="story-creator">Story Creator</span>
     </div>
     <div id="login-button">
@@ -45,17 +45,22 @@
   <main class="container">
     <header>
       <section class="intro">
-      <p>Welcome to my story making blog! I write stories but I often have writers block so I made this site to get some ideas from the creative minds of people like you! Read the ideas of other users and give them a thumbsup if you like it! I'll merge the idea with the most votes (or who knows I might just go with the one I like best😜)</p>
+      <p id="intro-message">Welcome to my story making blog! I write stories but I often have writer's block so I made this site to get ideas from the creative minds of people like you! Read the ideas of other users and give them a thumbs-up if you like it! I'll merge the idea with the most votes — or who knows I might just go with the one I like best😜</p>
     </section>
     </header>
-    <section class="posted-stories">
-      <h1>Story Name</h1>
-      <p>story................</p>
-      <div class="add-contribution-button">
-      <button type="button" class="btn btn-outline-primary">Add Contribution</button>
+      <section class="posted-stories">
+        <div class="story-image">
+          <img src="https://static.wikia.nocookie.net/castlevania/images/5/5d/Dracula_%28animated_series%29_-_03.png/revision/latest/scale-to-width-down/506?cb=20180919024511">
+        </div>
+        <div class="story-text-button">
+          <h1>Story Name</h1>
+        <p class= "contribution-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel viverra mauris. Nam sagittis eget elit dapibus sagittis. Morbi augue dolor, fermentum et mollis eu, viverra at ante. Curabitur metus arcu, cursus eget suscipit eget, fermentum ut tortor. Suspendisse dapibus lacus vel lacinia pharetra. Quisque nec turpis enim. Aliquam eget nibh eget lectus malesuada feugiat. Nulla congue ullamcorper arcu, a sollicitudin neque aliquet eget. Vivamus eu tempor purus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+        <div class="add-contribution-button">
+          <button type="button" class="btn btn-link" style="color:black">Add Contribution</button>
+          </div>
       </div>
-      </section>
 
+      </section>
       <form id="contribution-form" method="POST" action="/contributions">
         <p class="error-msg"></p>
         <br>
@@ -63,7 +68,10 @@
           <textarea name="text" id="contribution-text"></textarea>
         </div>
         <div class="contribution-button-counter">
+<<<<<<< HEAD
           
+=======
+>>>>>>> 2a62e861df6bf0d385bbec2362f4cfe7c34dd675
           <output name="counter" class="counter" for="contribution-text">200</output>
         </div>
       </form>
