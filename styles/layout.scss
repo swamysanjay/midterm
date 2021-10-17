@@ -1,10 +1,12 @@
 // See: https://sass-lang.com/
 // GLOBAL LAYOUT
 $paper: #FFF9E4;
+$brown: #545149;
 
 body {
-  color: #545149;
   background-color: $paper;
+  color: $brown;
   font-size: 24px;
   font-family: 'Amatic SC', sans-serif;
 }
+
