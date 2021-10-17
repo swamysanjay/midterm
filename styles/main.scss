@@ -1,12 +1,54 @@
+$peach: #FFC785;
+$lavendar: #7189BF;
+$seafoam: #72D6C9;
 $pink: #DF7599;
 main {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   margin: auto;
   width: 100%;
 }
-.posted-stories {
-  border: 2px solid $pink;
+
+.intro {
+  display:flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.posted-stories {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.story-image {
+  border: solid 2px black;
+}
+
+.story-text-button {
+  display:flex;
+  flex-direction: column;
+}
+
+h1 {
+  margin-left: 0.3em;
+  margin-top: -0.2em;
+  margin-bottom: 0;
+}
+
+.contribution-text {
+  display:flex;
+  flex-direction: column;
+  margin-left: 0.5em;
+}
+
+.add-contribution-button {
+  display:flex;
+  justify-content: center;
+  background-color: $seafoam;
+  transition-duration: 0.4s;
+  border-radius: 12px;
+  &:hover {
+    cursor: pointer;
+    background-color: $pink;
+  }
+}
+
