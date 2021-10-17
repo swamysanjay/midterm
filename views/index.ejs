@@ -4,17 +4,81 @@
 <head>
   <title>Home Page</title>
 
+  <!--BOOTSTRAP CSS-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+
+  <!--FONTS CSS-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" />
+  <!--EXTERNAL JS-->
 </head>
 
 <body>
-  <h1>Have fun! 🥔</h1>
+  <nav>
+    <span class="story-creator">Story Creator</span>
+    <div class="nav-container">
+      <p>What's good</p>
+    </div>
+    <main style="margin: 1em;">
+      <button type="submit" class="btn btn-outline-primary">Login</button>
+  </nav>
+  <header>
+
+  </header>
+  <section class="h3-container">
+    <h3>Introduction 🥔</h3>
+  </section>
+  <main class="container">
+    <section class="posted-stories">
+      <h1>Story Name</h1>
+      <p>story................</p>
+      <div class="add-contribution-button">
+      <button type="button" class="btn btn-outline-primary">Add Contribution</button>
+      </div>
+      </section>
+
+
+
+
+
+
+
+      <form id="contribution-form" method="POST" action="/contributions">
+        <p class="error-msg"></p>
+        <br>
+        <div>
+          <textarea name="text" id="contribution-text"></textarea>
+        </div>
+        <div class="contribution-button-counter">
+
+          <output name="counter" class="counter" for="contribution-text">200</output>
+        </div>
+      </form>
+      <section id="contributions-container">
+        <i class="fas fa-thumbs-up"></i>
+
+    </section>
+  </main>
 </body>
 
 </html>
