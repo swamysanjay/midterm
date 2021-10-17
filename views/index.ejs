@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Home Page</title>
+  <title>Story Creator - Home Page</title>
 
   <!--BOOTSTRAP CSS-->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -35,12 +35,13 @@
 
 <body>
   <nav>
-    <span class="story-creator">Story Creator</span>
-    <div class="nav-container">
-      <p>What's good</p>
+    <div id="nav-icon-title">
+      <img id="books-icon" src="midterm/db/imgs/books.png">
+      <span class="story-creator">Story Creator</span>
     </div>
-    <main style="margin: 1em;">
-      <button type="submit" class="btn btn-outline-primary">Login</button>
+    <div id="login-button">
+      <button type="submit" class="btn btn-link" style="color: black;">Login</button>
+      </div>
   </nav>
   <header>
 
@@ -57,12 +58,6 @@
       </div>
       </section>
 
-
-
-
-
-
-
       <form id="contribution-form" method="POST" action="/contributions">
         <p class="error-msg"></p>
         <br>
@@ -77,7 +72,7 @@
       <section id="contributions-container">
         <i class="fas fa-thumbs-up"></i>
 
-    </section>
+      </section>
   </main>
 </body>
 

@@ -1,12 +1,15 @@
+$peach: #FFC785; 
+$lavendar: #7189BF;
+$seafoam: #72D6C9;
+$pink: #DF7599;
 
-
-.nav {
+nav {
   position: fixed;
   top: 0;
   width: 100%;
   padding: 0 1.5em;
-  height: 100px;
-  background-color: #4056A1;
+  height: 150px;
+  background-color: $lavendar;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -16,21 +19,26 @@
 
 .story-creator {
   font-family: "Permanent Marker";
-  font-size: 2em;
+  font-size: 3em;
+  color: $peach;
 }
 
-nav {
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  li { display: inline-block; }
-
-  a {
-    display: block;
-    padding: 6px 12px;
-    text-decoration: none;
-  }
+#nav-icon-title {
+  display: flex;
+  justify-content: flex-start;
 }
+
+#login-button{
+  background-color: $seafoam;
+  transition-duration: 0.4s;
+  border-radius: 12px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 1em;
+  margin-top: 1em;
+ }
+ #login-button:hover {
+  cursor: pointer;
+  background-color: $pink;
+ }
