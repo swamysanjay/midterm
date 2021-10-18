@@ -14,7 +14,6 @@ main {
   justify-content: center;
 }
 
-
 .posted-stories {
   display: flex;
   flex-direction: row;
@@ -27,7 +26,8 @@ main {
 }
 
 .story-image {
-  border: solid 2px black;
+  border: solid 2px $lavendar;
+  width: 99%;
 }
 
 .story-text-button {
@@ -42,13 +42,12 @@ h1 {
   color: $pink;
 }
 
-.contribution-text {
-  display:flex;
-  flex-direction: column;
-  margin-left: 0.5em
+.story-text {
+  margin-left: 0.5em;
+  width: 100%;
 }
 
-.add-contribution-button {
+.button {
   display:flex;
   justify-content: center;
   background-color: $seafoam;
@@ -60,3 +59,53 @@ h1 {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
   }
 }
+
+.contributions {
+  display:flex;
+  flex-direction: column;
+  width: 100%;
+}
+.contribution-button-counter {
+
+}
+
+#contribution-text {
+  display:flex;
+  align-items: flex-end;
+  outline: none;
+  border: solid 1px grey;
+  background: transparent;
+  resize: none;
+  width: 100%;
+  &:hover {
+    box-shadow: 0 5px 10px
+    0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+  }
+
+.previous-contributions {
+  border: 1px solid $pink;
+}
+
+#avatar {
+  width: 5%;
+  padding: 5px 5px;
+}
+.counter {
+  float: right;
+  color: $pink;
+}
+
+i {
+  color: $lavendar;
+    &:hover {
+    cursor: pointer;
+    color: $pink;
+  }
+}
+
+#contributions-container {
+  float: right;
+}
+
+/* word-break: break-all; */
