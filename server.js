@@ -39,8 +39,8 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
 const contributionsRoutes = require("./routes/contributions");
-// const storiesRoutes = require("./routes/stories");
-// const votesRoutes = require("./routes/votes");
+const storiesRoutes = require("./routes/stories");
+const votesRoutes = require("./routes/votes");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -50,10 +50,11 @@ app.get("/login/:id", (req, res) => {
   res.json({ success: true });
 });
 
+app.use(express.static('public'));  //used to dynamically render content on server side without ejs
 app.use("/api/users", usersRoutes(db));
 app.use("/api/contributions", contributionsRoutes(db));
-// app.use("/api/stories", storiesRoutes(db));
-// app.use("/api/votes", votesRoutes(db));
+app.use("/api/stories", storiesRoutes(db));
+app.use("/api/votes", votesRoutes(db));
 
 // Note: mount other resources here, using the same pattern above
 
@@ -61,9 +62,9 @@ app.use("/api/contributions", contributionsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
+// app.get("/", (req, res) => {
+//   res.render("index");
+// });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
