@@ -49,18 +49,24 @@
     </section>
     </header>
       <section class="posted-stories">
-        <div class="story-image">
-          <img src="https://static.wikia.nocookie.net/castlevania/images/5/5d/Dracula_%28animated_series%29_-_03.png/revision/latest/scale-to-width-down/506?cb=20180919024511">
+        <div class="img-status">
+          <div class="story-image">
+            <img src="https://static.wikia.nocookie.net/castlevania/images/5/5d/Dracula_%28animated_series%29_-_03.png/revision/latest/scale-to-width-down/506?cb=20180919024511">
+          </div>
+          <div class="story-status">
+            <span class="badge badge-success">Completed</span>
+            <span class="badge badge-secondary">In Progress</span>
+          </div>
         </div>
         <div class="story-text-button">
           <h1>Story Name</h1>
-        <p class= "contribution-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel viverra mauris. Nam sagittis eget elit dapibus sagittis. Morbi augue dolor, fermentum et mollis eu, viverra at ante. Curabitur metus arcu, cursus eget suscipit eget, fermentum ut tortor. Suspendisse dapibus lacus vel lacinia pharetra. Quisque nec turpis enim. Aliquam eget nibh eget lectus malesuada feugiat. Nulla congue ullamcorper arcu, a sollicitudin neque aliquet eget. Vivamus eu tempor purus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-        <div class="add-contribution-button">
-          <button type="button" class="btn btn-link" style="color:black">Add Contribution</button>
+          <p class= "contribution-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel viverra mauris. Nam sagittis eget elit dapibus sagittis. Morbi augue dolor, fermentum et mollis eu, viverra at ante. Curabitur metus arcu, cursus eget suscipit eget, fermentum ut tortor. Suspendisse dapibus lacus vel lacinia pharetra. Quisque nec turpis enim. Aliquam eget nibh eget lectus malesuada feugiat. Nulla congue ullamcorper arcu, a sollicitudin neque aliquet eget. Vivamus eu tempor purus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+          <div class="add-contribution-button">
+            <button type="button" class="btn btn-link" style="color:black">Add Contribution</button>
           </div>
-      </div>
-
+        </div>
       </section>
+
       <form id="contribution-form" method="POST" action="/contributions">
         <p class="error-msg"></p>
         <br>
@@ -68,7 +74,6 @@
           <textarea name="text" id="contribution-text"></textarea>
         </div>
         <div class="contribution-button-counter">
-
           <output name="counter" class="counter" for="contribution-text">200</output>
         </div>
       </form>
