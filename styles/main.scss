@@ -45,6 +45,7 @@ h1 {
 .story-text {
   margin-left: 0.5em;
   width: 100%;
+  font-family: 'Delius Swash Caps';
 }
 
 .button {
@@ -65,9 +66,9 @@ h1 {
   flex-direction: column;
   width: 100%;
 }
-.contribution-button-counter {
+// .contribution-button-counter {
 
-}
+// }
 
 #contribution-text {
   display:flex;
@@ -85,6 +86,10 @@ h1 {
 
 .previous-contributions {
   border: 1px solid $pink;
+    button {
+      float: right;
+      margin: 5px 5px;
+    }
 }
 
 #avatar {
@@ -98,6 +103,7 @@ h1 {
 
 i {
   color: $lavendar;
+  float: right;
     &:hover {
     cursor: pointer;
     color: $pink;

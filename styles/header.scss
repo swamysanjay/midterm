@@ -1,8 +1,16 @@
+$peach: #FFC785;
+$lavendar: #7189BF;
+$seafoam: #72D6C9;
+$pink: #DF7599;
+
 .intro {
   margin-top: 175px;
   width: 100%;
+  #intro-message {
+    font-family: 'Pangolin';
+    color: $pink;
+  }
 }
 
-#intro-message {
 
-}
+
