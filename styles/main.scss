@@ -15,9 +15,6 @@ main {
 }
 
 .posted-stories {
-<<<<<<< HEAD
-  border: 4px solid $pink;
-=======
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -54,5 +51,4 @@ h1 {
     cursor: pointer;
     background-color: $pink;
   }
->>>>>>> 2a62e861df6bf0d385bbec2362f4cfe7c34dd675
 }
