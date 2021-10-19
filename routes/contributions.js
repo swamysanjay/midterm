@@ -12,12 +12,12 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
 
     //console.log(query);
-    db.query(`SELECT contributions.suggestion, users.name, count(votes.vote)
+    db.query(`SELECT contributions.suggestion, contributions.story_id, users.name, count(votes.vote)
     FROM contributions
     JOIN users ON users.id = user_id
     JOIN votes ON votes.id = contribution_id
     WHERE votes.vote = true
-    GROUP BY contributions.suggestion, users.name`)
+    GROUP BY contributions.suggestion, contributions.story_id, users.name`)
       .then(data => {
         const contributions = data.rows;
         console.log(contributions)
