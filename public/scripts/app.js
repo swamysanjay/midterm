@@ -41,6 +41,7 @@ $(() => {
       </div>`
       return $story;
   }
+let storyId;
 
   const renderStories = (stories) => {
     for (const story of stories) {
@@ -50,7 +51,7 @@ $(() => {
     $('.add-story').click(function(event){
       event.preventDefault();
       console.log("BOOGERS:", event.target)
-      const storyId = $(event.target).attr("data-id");
+      storyId = $(event.target).attr("data-id");
       console.log("event.target:", $(event.target));
       console.log("storyId:", storyId);
       $.ajax({
@@ -65,7 +66,7 @@ $(() => {
           console.log(`error: ${error}`);
         }
       });
-  
+
     })
    };
 
@@ -94,11 +95,33 @@ $(() => {
 
   };
 
-  //$('#contributions-container').hide();
+  const loadContributions = () => {
+      $.ajax({
+        url: "/api/contributions",
+        method: "GET",
+        datatype: "json",
+        success: (contributions) => {
+          renderContributions(contributions);
+        },
+        error: (error) => {
+          console.log(`error: ${error}`);
+        }
+      });
+    //loadContributions();
+  }
 
-  
+  $("#contribution-form").submit(function(event) {
+    event.preventDefault();
+    const serializedData = $(this).serialize();
+    console.log("serializedData", serializedData);
 
-
-  
+    $.post(`/api/contributions/${storyId}`, serializedData, (response) => {
+      $("#contribution-text").val("");
+      $(".counter").text("200");
+      $("#contributions-container").empty();
+      loadContributions();
+    });
+  });
 
 });
+

@@ -20,8 +20,26 @@ module.exports = (db) => {
     GROUP BY contributions.suggestion, contributions.story_id, users.name`)
       .then(data => {
         const contributions = data.rows;
-        console.log(contributions)
+        //console.log(contributions)
         res.json(contributions);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+  router.post("/:storyId", (req, res) => {
+    const suggestion = req.body.suggestion;
+    const storyId = req.params.storyId;
+    const userId = req.cookies.user_id;
+    db.query(`INSERT INTO contributions(accepted, suggestion, user_id, story_id)
+    VALUES ($1, $2, $3, $4)
+    RETURNING *`, [false, suggestion, userId, storyId])
+      .then(data => {
+        const suggest = data.rows;
+        console.log(suggest)
+        res.json(suggest)
       })
       .catch(err => {
         res
