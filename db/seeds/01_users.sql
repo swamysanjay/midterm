@@ -1,6 +1,6 @@
 -- Users table seeds here (Example)
 INSERT INTO users (name)
-VALUES ('Alice', 'Kira', 'Daniel');
+VALUES ('Alice'), ('Kira'), ('Daniel');
 
 INSERT INTO stories (title, content, status, thumbnail_url)
 VALUES ('Dracula', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel viverra mauris. Nam sagittis eget elit dapibus sagittis. Morbi augue dolor, fermentum et mollis eu, viverra at ante. Curabitur metus arcu, cursus eget suscipit eget, fermentum ut tortor.', TRUE, 'HTTP:'),

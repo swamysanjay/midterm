@@ -3,10 +3,13 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    db.query(`SELECT * FROM votes`)
+    db.query(`SELECT COUNT(votes.vote) as vote_count
+    FROM votes
+    JOIN contributions ON contributions.id = contribution_id
+    WHERE contributions.id = 1 AND votes.vote = TRUE;`)
       .then(data => {
-        const users = data.rows;
-        res.json({ users });
+        const votes = data.rows;
+        res.json(votes);
       })
       .catch(err => {
         res

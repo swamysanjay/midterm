@@ -10,7 +10,7 @@ $(() => {
       url: "/api/stories",
       method: "GET",
       datatype: "json",
-      success: (stories) => {
+      success: (stories, contributions) => {
         // console.log('stories:', stories);
         // const story = stories[0]
         // createStory(story)
@@ -43,21 +43,47 @@ const createStory = (story) => {
   </div>`
 return $story;
 }
-  const renderStories = (stories) => {
-    for (const story of stories) {
-      const $story = createStory(story)
-      $('.container').append($story)
-    }
 
-  }
-  //prevents harmful text inputs from altering the page
-  const escape = function(str) {
-    let div = document.createElement("div");
-    div.appendChild(document.createTextNode(str));
-    return div.innerHTML;
+const createContribution = (contribution) => {
+  console.log(contribution)
+  const $contribution = `<div class="previous-contributions">
+  <h2>${contribution.name}</h2>
+  <button type="button" class="btn btn-success">Accept</button>
+  <img id="avatar" src="/imgs/nerd.jpeg">
+  <p class= "story-text">${contribution.suggestion}</p>
+  <section id="contributions-container">
+</div>
+<i class="fas fa-thumbs-up"></i>
+</form>
+</div>`
+return $contribution;
+}
+
+const renderContributions = (contributions) => {
+  for (const contribution of contributions) {
+    const $contribution = createContribution(contributions)
+    $('#contributions-container').append($contribution)
   };
+}
 
+const renderStories = (stories) => {
+  for (const story of stories) {
+    const $story = createStory(story)
+    $('.container').append($story)
+  }
+ };
 
+//prevents harmful text inputs from altering the page
+const escape = function(str) {
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
 
+// $('#contribution-form').click(function(event) {
+//   //stops form from refreshing
+//   event.preventDefault()
+//   renderContributions(contributions).show();
+//   })
 
-})
+});
