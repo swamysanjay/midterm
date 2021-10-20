@@ -23,11 +23,10 @@ main {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-}
-
-.img-status {
-  display:flex;
-  flex-direction: column;
+  .img-status {
+    display:flex;
+    flex-direction: column;
+  }
 }
 
 .story-image {
@@ -49,7 +48,8 @@ h1 {
 }
 
 .story-text {
-  margin-left: 0.5em;
+  margin-left: -2.5em;
+  margin-top: 2em;
   width: 100%;
   font-family: 'Delius Swash Caps';
 }
@@ -93,17 +93,33 @@ h1 {
 .previous-contributions {
   display: flex;
   flex-direction: row;
-  border: 1px solid $seafoam;
-    button {
+  width: 100%;
+    .btn {
       float: right;
-      margin: 5px 5px;
+      width: 50px;
+      height: 37px;
+      margin-top: 5px;
+      margin-right: -35px;
+    }
+    #avatar {
+      width: 50px;
+      height: 50px;
+      padding: 5px 5px;
+    }
+    #avatar-name-text-accept-thumb { 
+      border: $seafoam 2px solid;
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+    }
+    i {
+      align-self: flex-end;
+      margin-bottom: 5px;
+      margin-right: 5px;
     }
 }
 
-#avatar {
-  width: 5%;
-  padding: 5px 5px;
-}
+
 .counter {
   float: right;
   color: $pink;
