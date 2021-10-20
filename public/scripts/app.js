@@ -67,7 +67,7 @@ let storyId;
           renderContributions(contributions);
           $("#contribution-form").empty()
           $("#contribution-form").append(`<textarea name="suggestion" id="contribution-text"></textarea>
-          <div class="button">
+          <div class="add-contribution-button">
             <button type="submit" class="btn btn-link" style="color:black">Add Contribution</button>
             <output name="counter" class="counter" for="contribution-text">200</output>
           </div>`);
@@ -83,16 +83,22 @@ let storyId;
     const createContribution = (contribution) => {
     const $contribution = `
     <div class="previous-contributions">
-      <div id="avatar-name-text-accept-thumb">
-      <img id="avatar" src="/imgs/nerd.jpeg">
-      <h2>${contribution.name}</h2>
-      <p class= "story-text">${contribution.suggestion}</p>
-      <button type="button" class="btn btn-success">Accept</button>
-      <i class="fas fa-thumbs-up"><span>${contribution.count}</span></i>
-      <section id="contributions-container">
-      </div>
-    </div>
-    </form>
+      <article id="contribution-parent">
+        <div class="left-avatar-name-suggestion">
+          <div class="left-avatar-icon">
+            <img id="avatar" src="/imgs/nerd.jpeg">
+          </div>
+          <div class="right-name-suggestion">
+            <h2>${contribution.name}</h2>
+            <p class= "story-text">${contribution.suggestion}</p>
+          </div>
+        </div>
+        <div class="right-button-votes">
+          <button type="button" class="btn btn-success" style="color: black;">Accept</button>
+          <i class="fas fa-thumbs-up"> <span>${contribution.count}</span></i>
+        </div>
+        <section id="contributions-container"></section>
+      </article>
     </div>
     <br>`
   return $contribution;

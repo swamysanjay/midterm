@@ -2,6 +2,7 @@ $peach: #FFC785;
 $lavendar: #7189BF;
 $seafoam: #72D6C9;
 $pink: #DF7599;
+$brown: #545149;
 
 main {
   margin: auto;
@@ -27,11 +28,10 @@ main {
   margin-right: 10px;
 }
 
-.left-side {
-  //border: 2px solid $pink;
-}
+// .left-side {
+//   border: 2px solid $pink;
+// }
 .right-side {
-  //border: 2px solid $lavendar;
   width: 100%;
 }
 
@@ -66,100 +66,66 @@ h1 {
   font-family: 'Walter Turncoat';
 }
 
-// .posted-stories {
-//   display: flex;
-//   flex-direction: column;
-//   .img-status {
-//     display:flex;
-//     flex-direction: column;
-//   }
-//   .story-image {
-//     border: solid 2px $lavendar;
-//     width: 80px;
-//     height: 107px;
-//   }
-//   .title-text-button {
-//     display:flex;
-//     flex-direction: row;
-//   }
-// }
+.contribution-parent {
+  display: flex;
+  flex-direction: row;
+}
 
+.left-avatar-name-suggestion {
+  display:flex;
+  flex-direction: row;
+  border: 2px solid $pink;
+}
 
+#avatar {
+  width: 80px;
+  height: 80px;
+}
 
+.right-button-votes {
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+}
 
-// .contributions {
-//   display:flex;
-//   flex-direction: column;
-//   width: 100%;
-// }
-//  .contribution-button-counter {
+.fas {
+  margin-left: 10px;
+}
 
-//  }
+i {
+  color: $lavendar;
+    &:hover {
+    cursor: pointer;
+    color: $pink;
+  }
+  span {
+    color: $brown;
+  }
+}
 
-// #contribution-text {
-//   display:flex;
-//   align-items: flex-end;
-//   outline: none;
-//   border: solid 1px grey;
-//   background: transparent;
-//   resize: none;
-//   width: 100%;
-//   &:hover {
-//     box-shadow: 0 5px 10px
-//     0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-// }
-//   }
+#contribution-text {
+  display:flex;
+  align-items: flex-end;
+  outline: none;
+  border: solid 1px grey;
+  background: transparent;
+  font-family: 'Walter Turncoat';
+  resize: none;
+  width: 100%;
+  &:hover {
+    box-shadow: 0 5px 10px
+    0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+  }
 
-// .previous-contributions {
-//   display: flex;
-//   flex-direction: row;
-//   width: 100%;
-//     .btn {
-//       float: right;
-//       width: 50px;
-//       height: 37px;
-//       margin-top: 5px;
-//       margin-right: -35px;
-//     }
-//     #avatar {
-//       width: 50px;
-//       height: 50px;
-//       padding: 5px 5px;
-//     }
-//     #avatar-name-text-accept-thumb {
-//       border: $seafoam 2px solid;
-//       display: flex;
-//       flex-direction: row;
-//       width: 100%;
-//     }
-//     i {
-//       align-self: flex-end;
-//       margin-bottom: 5px;
-//       margin-right: 5px;
-//     }
-// }
+.counter {
+  float: right;
+  color: $pink;
+}
 
-// .counter {
-//   float: right;
-//   color: $pink;
-// }
-
-// i {
-//   color: $lavendar;
-//   float: right;
-//     &:hover {
-//     cursor: pointer;
-//     color: $pink;
-//   }
-// }
-
-// #contributions-container {
-//   float: right;
-// }
-
-// #contribution-form {
-//   float: right;
-//   width: 100%;
-// }
-
-/* word-break: break-all; */
+.add-contribution-button {
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+  word-break: break-all;
+}
