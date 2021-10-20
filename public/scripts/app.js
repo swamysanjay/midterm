@@ -41,12 +41,14 @@ $(() => {
       </div>`
       return $story;
   }
+
+  
 let storyId;
 
   const renderStories = (stories) => {
     for (const story of stories) {
       const $story = createStory(story)
-      $('.container').append($story)
+      $('.posted-stories').append($story)
     }
     $('.add-story').click(function(event){
       event.preventDefault();
@@ -59,6 +61,7 @@ let storyId;
         method: "GET",
         datatype: "json",
         success: (contributions) => {
+          console.log("hiii",contributions)
           renderContributions(contributions);
           $("#contribution-form").empty()
           $("#contribution-form").append(`<textarea name="suggestion" id="contribution-text"></textarea>
@@ -78,15 +81,18 @@ let storyId;
     const createContribution = (contribution) => {
     const $contribution = `
     <div class="previous-contributions">
-      <h2>${contribution.name}</h2>
-      <button type="button" class="btn btn-success">Accept</button>
+      <div id="avatar-name-text-accept-thumb">
       <img id="avatar" src="/imgs/nerd.jpeg">
+      <h2>${contribution.name}</h2>
       <p class= "story-text">${contribution.suggestion}</p>
+      <button type="button" class="btn btn-success">Accept</button>
+      <i class="fas fa-thumbs-up"><span>${contribution.count}</span></i>
       <section id="contributions-container">
+      </div>
     </div>
-    <i class="fas fa-thumbs-up"><span>${contribution.count}</span></i>
     </form>
-    </div>`
+    </div>
+    <br>`
   return $contribution;
   }
 
@@ -96,34 +102,24 @@ let storyId;
       const $contribution = createContribution(contribution);
       $('#contributions-container').append($contribution)
     };
-
   };
+  
 
-  const loadContributions = () => {
-      $.ajax({
-        url: "/api/contributions",
-        method: "GET",
-        datatype: "json",
-        success: (contributions) => {
-          renderContributions(contributions);
-        },
-        error: (error) => {
-          console.log(`error: ${error}`);
-        }
-      });
-    //loadContributions();
-  }
-
+//"Add Contribution" button posts newly inputted suggestions to website
   $("#contribution-form").submit(function(event) {
     event.preventDefault();
     const serializedData = $(this).serialize();
     console.log("serializedData", serializedData);
 
     $.post(`/api/contributions/${storyId}`, serializedData, (response) => {
+      //clears textbox after submission
       $("#contribution-text").val("");
+      //rewrites 200 in the count
       $(".counter").text("200");
+      //keeps textbox empty
       $("#contributions-container").empty();
       loadContributions();
+      //NEXT STEP: ONLY LOAD CONTRIBUTIONS FOR THAT SPECIFIC STORY
     });
   });
 
