@@ -23,26 +23,28 @@ $(() => {
   const createStory = (story) => {
     console.log(story)
     const $story = `
-      <div class="img-status">
-        <div>
-          <img class="story-image" src="${story.thumbnail_url}">
-        </div>
-        <div class="story-status">
-          <span class="badge badge-success">${story.status}</span>
-          <span class="badge badge-secondary">${story.status}</span>
-        </div>
+    <article class="story-parent">
+    <div class="left-side">
+      <div class= "left-section">
+        <img class="story-image" src="${story.thumbnail_url}">
       </div>
-      <div class="story-text-button">
-        <h1>${story.title}</h1>
-        <p class= "story-text">${story.content}</p>
-        <div class="button">
-      <button type="button" class="btn btn-link add-story" style="color:black" data-id="${story.id}">Add to Story</button>
+      <div class="story-status">
+        <span class="badge badge-success">${story.status}</span>
+        <span class="badge badge-secondary">${story.status}</span>
+      </div>
     </div>
-      </div>`
+    <div class="right-side">
+      <h1>${story.title}</h1>
+      <p class= "story-text">${story.content}</p>
+      <div class="button-container">
+        <button type="button" class="btn btn-link" style="color:black" data-id="${story.id}">Add to Story</button>
+      </div>
+    </div>
+  </article>
+  <br>`
       return $story;
   }
 
-  
 let storyId;
 
   const renderStories = (stories) => {
@@ -50,7 +52,7 @@ let storyId;
       const $story = createStory(story)
       $('.posted-stories').append($story)
     }
-    $('.add-story').click(function(event){
+    $('.btn').click(function(event){
       event.preventDefault();
       console.log("event.target:", event.target)
       storyId = $(event.target).attr("data-id");
@@ -61,7 +63,7 @@ let storyId;
         method: "GET",
         datatype: "json",
         success: (contributions) => {
-          console.log("hiii",contributions)
+          console.log(contributions)
           renderContributions(contributions);
           $("#contribution-form").empty()
           $("#contribution-form").append(`<textarea name="suggestion" id="contribution-text"></textarea>
@@ -103,7 +105,7 @@ let storyId;
       $('#contributions-container').append($contribution)
     };
   };
-  
+
 
 //"Add Contribution" button posts newly inputted suggestions to website
   $("#contribution-form").submit(function(event) {

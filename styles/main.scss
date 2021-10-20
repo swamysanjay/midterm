@@ -3,11 +3,6 @@ $lavendar: #7189BF;
 $seafoam: #72D6C9;
 $pink: #DF7599;
 
-#contribution-form {
-  float: right;
-  width: 100%;
-}
-
 main {
   margin: auto;
   width: 100%;
@@ -19,42 +14,38 @@ main {
   justify-content: center;
 }
 
-.posted-stories {
+.story-parent {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  .img-status {
-    display:flex;
-    flex-direction: column;
-  }
+  //border: 2px solid $seafoam;
 }
 
 .story-image {
-  border: solid 2px $lavendar;
-  width: 80px;
-  height: 107px;
+  width: 150px;
+}
+.left-section {
+  margin-right: 10px;
 }
 
-.story-text-button {
-  display:flex;
-  flex-direction: column;
+.left-side {
+  //border: 2px solid $pink;
 }
-
-h1 {
-  margin-left: 0.3em;
-  margin-top: -0.2em;
-  margin-bottom: 0;
-  color: $pink;
-}
-
-.story-text {
-  margin-left: -2.5em;
-  margin-top: 2em;
+.right-side {
+  //border: 2px solid $lavendar;
   width: 100%;
-  font-family: 'Delius Swash Caps';
 }
 
-.button {
+//overwrite normalize file by making all h1's from the .right-side parent have 0 margins
+.right-side > h1 {
+  margin: 0;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn {
   display:flex;
   justify-content: center;
   background-color: $seafoam;
@@ -67,75 +58,108 @@ h1 {
   }
 }
 
-.contributions {
-  display:flex;
-  flex-direction: column;
-  width: 100%;
-}
-// .contribution-button-counter {
-
-// }
-
-#contribution-text {
-  display:flex;
-  align-items: flex-end;
-  outline: none;
-  border: solid 1px grey;
-  background: transparent;
-  resize: none;
-  width: 100%;
-  &:hover {
-    box-shadow: 0 5px 10px
-    0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-}
-  }
-
-.previous-contributions {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-    .btn {
-      float: right;
-      width: 50px;
-      height: 37px;
-      margin-top: 5px;
-      margin-right: -35px;
-    }
-    #avatar {
-      width: 50px;
-      height: 50px;
-      padding: 5px 5px;
-    }
-    #avatar-name-text-accept-thumb { 
-      border: $seafoam 2px solid;
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-    }
-    i {
-      align-self: flex-end;
-      margin-bottom: 5px;
-      margin-right: 5px;
-    }
-}
-
-
-.counter {
-  float: right;
+h1 {
   color: $pink;
 }
 
-i {
-  color: $lavendar;
-  float: right;
-    &:hover {
-    cursor: pointer;
-    color: $pink;
-  }
+.story-text {
+  font-family: 'Walter Turncoat';
 }
 
-#contributions-container {
-  float: right;
-}
+// .posted-stories {
+//   display: flex;
+//   flex-direction: column;
+//   .img-status {
+//     display:flex;
+//     flex-direction: column;
+//   }
+//   .story-image {
+//     border: solid 2px $lavendar;
+//     width: 80px;
+//     height: 107px;
+//   }
+//   .title-text-button {
+//     display:flex;
+//     flex-direction: row;
+//   }
+// }
+
+
+
+
+// .contributions {
+//   display:flex;
+//   flex-direction: column;
+//   width: 100%;
+// }
+//  .contribution-button-counter {
+
+//  }
+
+// #contribution-text {
+//   display:flex;
+//   align-items: flex-end;
+//   outline: none;
+//   border: solid 1px grey;
+//   background: transparent;
+//   resize: none;
+//   width: 100%;
+//   &:hover {
+//     box-shadow: 0 5px 10px
+//     0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+// }
+//   }
+
+// .previous-contributions {
+//   display: flex;
+//   flex-direction: row;
+//   width: 100%;
+//     .btn {
+//       float: right;
+//       width: 50px;
+//       height: 37px;
+//       margin-top: 5px;
+//       margin-right: -35px;
+//     }
+//     #avatar {
+//       width: 50px;
+//       height: 50px;
+//       padding: 5px 5px;
+//     }
+//     #avatar-name-text-accept-thumb {
+//       border: $seafoam 2px solid;
+//       display: flex;
+//       flex-direction: row;
+//       width: 100%;
+//     }
+//     i {
+//       align-self: flex-end;
+//       margin-bottom: 5px;
+//       margin-right: 5px;
+//     }
+// }
+
+// .counter {
+//   float: right;
+//   color: $pink;
+// }
+
+// i {
+//   color: $lavendar;
+//   float: right;
+//     &:hover {
+//     cursor: pointer;
+//     color: $pink;
+//   }
+// }
+
+// #contributions-container {
+//   float: right;
+// }
+
+// #contribution-form {
+//   float: right;
+//   width: 100%;
+// }
 
 /* word-break: break-all; */
