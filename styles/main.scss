@@ -3,6 +3,11 @@ $lavendar: #7189BF;
 $seafoam: #72D6C9;
 $pink: #DF7599;
 
+#contribution-form {
+  float: right;
+  width: 100%;
+}
+
 main {
   margin: auto;
   width: 100%;
@@ -86,7 +91,9 @@ h1 {
   }
 
 .previous-contributions {
-  border: 1px solid $pink;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid $seafoam;
     button {
       float: right;
       margin: 5px 5px;

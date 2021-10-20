@@ -22,7 +22,7 @@ $(() => {
 
   const createStory = (story) => {
     console.log(story)
-    const $story = `<section class="posted-stories">
+    const $story = `
       <div class="img-status">
         <div>
           <img class="story-image" src="${story.thumbnail_url}">
@@ -50,7 +50,7 @@ let storyId;
     }
     $('.add-story').click(function(event){
       event.preventDefault();
-      console.log("BOOGERS:", event.target)
+      console.log("event.target:", event.target)
       storyId = $(event.target).attr("data-id");
       console.log("event.target:", $(event.target));
       console.log("storyId:", storyId);
@@ -60,14 +60,19 @@ let storyId;
         datatype: "json",
         success: (contributions) => {
           renderContributions(contributions);
-          console.log(" output",contributions)
+          $("#contribution-form").empty()
+          $("#contribution-form").append(`<textarea name="suggestion" id="contribution-text"></textarea>
+          <div class="button">
+            <button type="submit" class="btn btn-link" style="color:black">Add Contribution</button>
+            <output name="counter" class="counter" for="contribution-text">200</output>
+          </div>`);
+          //console.log(" output",contributions)
         },
         error: (error) => {
           console.log(`error: ${error}`);
         }
       });
-
-    })
+    });
    };
 
     const createContribution = (contribution) => {
@@ -79,8 +84,7 @@ let storyId;
       <p class= "story-text">${contribution.suggestion}</p>
       <section id="contributions-container">
     </div>
-    <i class="fas fa-thumbs-up"></i>
-    <p>${contribution.count}<p>
+    <i class="fas fa-thumbs-up"><span>${contribution.count}</span></i>
     </form>
     </div>`
   return $contribution;
