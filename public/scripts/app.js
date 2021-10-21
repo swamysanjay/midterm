@@ -142,7 +142,7 @@ $(() => {
         </div>
         <div class="right-button-votes">
           <button type="button" class="btn btn-success" style="color: black;">Accept</button>
-          <i class="fas fa-thumbs-up"> <span id="votes">${contribution.count}</span></i>
+          <i class="fas fa-thumbs-up"> <span id="votes">${contribution.vote}</span></i>
         </div>
       </article>
     </div>

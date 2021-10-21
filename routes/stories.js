@@ -21,12 +21,12 @@ module.exports = (db) => {
   router.get("/:storyId/contributions", (req, res) => {
     const storyId = req.params.storyId;
     db.query(`
-    SELECT contribution_id, users.name, contributions.suggestion, COUNT (*)
+    SELECT contribution_id, contributions.id, users.name, contributions.suggestion, COUNT (contribution_id) as vote
     FROM contributions
     JOIN users ON users.id = user_id
-    JOIN votes ON contributions.id = votes.contribution_id
+    LEFT JOIN votes ON contributions.id = votes.contribution_id
     WHERE contributions.story_id = $1
-    GROUP BY contribution_id, users.name, contributions.suggestion`,[storyId])
+    GROUP BY contribution_id, contributions.id, users.name, contributions.suggestion`,[storyId])
       .then(data => {
         const contributions = data.rows;
         console.log("contributions:", contributions)
@@ -41,5 +41,3 @@ module.exports = (db) => {
   })
   return router;
 };
-
-
