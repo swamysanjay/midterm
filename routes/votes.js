@@ -2,18 +2,16 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
-  router.get("/:storyId/:contributionId", (req, res) => {
-    const storyId = req.params.storyId;
+  router.post("/:contributionId", (req, res) => {
+    const userId = req.cookies.user_id;
     const contributionId = req.params.contributionId;
-    db.query(`SELECT votes.story_id, count(votes.contribution_id), votes.vote, contributions.suggestion
-    FROM votes
-    JOIN contributions ON contributions.id = contribution_id
-    WHERE votes.story_id = $1 AND contributions.id = $2
-    GROUP BY votes.story_id, votes.vote, contributions.suggestion;`, [storyId, contributionId])
+    db.query(`INSERT INTO votes (contribution_id, user_id)
+    VALUES ($1, $2)
+    RETURNING *`, [contributionId, userId])
       .then(data => {
-        const contribution = data.rows;
-        console.log('votes:', contribution[0].count)
-        res.json(contribution);
+        const votes = data.rows;
+        console.log('votes:', votes)
+        res.json(votes);
       })
       .catch(err => {
         res
@@ -21,6 +19,8 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+
+
 
   // router.post("/:storyId", (req, res) => {
   //   // const vote = req.body.vote;

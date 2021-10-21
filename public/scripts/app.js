@@ -142,7 +142,7 @@ $(() => {
         </div>
         <div class="right-button-votes">
           <button type="button" class="btn btn-success" style="color: black;">Accept</button>
-          <i class="fas fa-thumbs-up"> <span id="votes">${contribution.vote}</span></i>
+          <i class="fas fa-thumbs-up" data-vote="${contribution.id}"> <span id="votes">${contribution.vote}</span></i>
         </div>
       </article>
     </div>
@@ -151,10 +151,15 @@ $(() => {
   }
 
   $('body').on("click", ".fa-thumbs-up", function(event){
+    const contributionId = $(event.target).attr("data-vote");
+    console.log(contributionId);
     event.preventDefault();
-    console.log("event.target:", event.target)
-    //$.post(`/api/votes/${storyId}/${contributions}`) //??
-    //on click of thumbsup update number value in #votes span.
+    //console.log("event.target:", event.target)
+    $.post(`/api/votes/${contributionId}`)
+      .then(data => {
+        console.log("data:", data);
+        //$('#votes').append('data.vote');
+      });
   });
 
   const renderContributions = (contributions, storyId) => {
