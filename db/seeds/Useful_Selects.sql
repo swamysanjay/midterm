@@ -10,9 +10,10 @@ GROUP BY users.name, contributions.suggestion;
 
 RETURNS THE AMOUNT OF UPVOTES (TRUE) FOR A SPECIFIC CONTRIBUTION:
 
-SELECT COUNT(votes.vote) as vote_count
+SELECT votes.story_id, count(votes.contribution_id), votes.vote, contributions.suggestion
 FROM votes
 JOIN contributions ON contributions.id = contribution_id
-WHERE contributions.id = 1 AND votes.vote = TRUE;
+WHERE votes.story_id = 1 AND contributions.id = 1
+GROUP BY votes.story_id, votes.vote, contributions.suggestion;
 
-/*
+ */

@@ -19,17 +19,24 @@ module.exports = (db) => {
   });
   //LINKS with renderStories ajax GET request in app.js
   router.get("/:storyId/contributions", (req, res) => {
-    const storyId=req.params.storyId;
-    db.query(`SELECT contributions.suggestion, contributions.story_id, users.name, count(votes.vote)
+    const storyId = req.params.storyId;
+    db.query(`
+    SELECT contribution_id, users.name, contributions.suggestion, COUNT (*)
     FROM contributions
     JOIN users ON users.id = user_id
-    JOIN votes ON votes.id = contribution_id
+    JOIN votes ON contributions.id = votes.contribution_id
     WHERE contributions.story_id = $1
-    GROUP BY contributions.suggestion, contributions.story_id, users.name`,[storyId])
+    GROUP BY contribution_id, users.name, contributions.suggestion`,[storyId])
       .then(data => {
         const contributions = data.rows;
-        console.log(contributions)
+        console.log("contributions:", contributions)
         res.json(contributions);
+      })
+      .catch(err => {
+        console.log(err);
+        res
+          .status(500)
+          .json({error: err.message});
       })
   })
   return router;

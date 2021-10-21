@@ -29,7 +29,7 @@ $(() => {
         <img class="story-image" src="${story.thumbnail_url}">
       </div>
       <div class="story-status">
-        <span class="badge badge-success" data-status="${story.status}">Complete</span>
+        <span class="badge badge-success" data-status="${story.status}" data-id="${story.id}">Complete</span>
       </div>
     </div>
     <div class="right-side">
@@ -68,6 +68,13 @@ $(() => {
       }
     });
   }
+
+  //prevents harmful text inputs from altering the page
+  const escape = function(str) {
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
 
   const renderStories = (stories) => {
     for (const story of stories) {
@@ -110,10 +117,8 @@ $(() => {
               //keeps textbox empty
               $("#contributions-container").empty();
               loadContributions(storyId);
-              //NEXT STEP: ONLY LOAD CONTRIBUTIONS FOR THAT SPECIFIC STORY
             });
           });
-          //console.log(" output",contributions)
         },
         error: (error) => {
           console.log(`error: ${error}`);
@@ -137,7 +142,7 @@ $(() => {
         </div>
         <div class="right-button-votes">
           <button type="button" class="btn btn-success" style="color: black;">Accept</button>
-          <i class="fas fa-thumbs-up"> <span>${contribution.count}</span></i>
+          <i class="fas fa-thumbs-up"> <span id="votes">${contribution.count}</span></i>
         </div>
       </article>
     </div>
@@ -145,11 +150,12 @@ $(() => {
   return $contribution;
   }
 
-//******* */
-// $('body').on("click", ".fa-thumbs-up", function(event){
-//   event.preventDefault();
-//   console.log("event.target:", event.target)
-// });
+  $('body').on("click", ".fa-thumbs-up", function(event){
+    event.preventDefault();
+    console.log("event.target:", event.target)
+    //$.post(`/api/votes/${storyId}/${contributions}`) //??
+    //on click of thumbsup update number value in #votes span.
+  });
 
   const renderContributions = (contributions, storyId) => {
     $(`#contributions-container-${storyId}`).empty();
@@ -158,13 +164,6 @@ $(() => {
       $(`#contributions-container-${storyId}`).prepend($contribution)
     };
   };
-
-//prevents harmful text inputs from altering the page
-const escape = function(str) {
-  let div = document.createElement("div");
-  div.appendChild(document.createTextNode(str));
-  return div.innerHTML;
-};
 
 });
 

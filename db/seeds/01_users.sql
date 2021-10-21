@@ -16,18 +16,18 @@ VALUES ('killed Bella because she was a shallow, unfaithful witch!', 1, 2, TRUE)
 ('every day the family gave offerings to the ghost and prayed for it to pass on. This made the ghost feel bad so it decided to move out and haunt another family.', 3, 4, FALSE);
 
 
-INSERT INTO votes (user_id, story_id, contribution_id, vote)
-VALUES (2, 1, 1, TRUE),
-(2, 2, 2, TRUE),
-(2, 3, 1, TRUE),
-(3, 1, 1, TRUE),
-(3, 2, 2, TRUE),
-(3, 3, 2, TRUE),
-(4, 1, 1, TRUE),
-(4, 2, 1, TRUE),
-(4, 3, 2, TRUE),
-(5, 1, 2, TRUE),
-(5, 2, 2, TRUE),
-(5, 3, 2, TRUE);
+INSERT INTO votes (user_id, contribution_id, vote)
+VALUES (2, 1, TRUE),
+(2, 2, TRUE),
+(2, 1, TRUE),
+(3, 1, TRUE),
+(3, 2, TRUE),
+(3, 2, TRUE),
+(4, 1, TRUE),
+(4, 1, TRUE),
+(4, 2, TRUE),
+(5, 2, TRUE),
+(5, 2, TRUE),
+(5, 2, TRUE);
 
 

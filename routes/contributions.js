@@ -11,14 +11,13 @@ const router  = express.Router();
 module.exports = (db) => {
   // api/contributions
   router.get("/", (req, res) => {
-
-    //console.log(query);
-    db.query(`SELECT contributions.suggestion, contributions.story_id, users.name, count(votes.vote)
-    FROM contributions
-    JOIN users ON users.id = user_id
-    JOIN votes ON votes.id = contribution_id
-    WHERE votes.vote = true
-    GROUP BY contributions.suggestion, contributions.story_id, users.name`)
+    const storyId = req.params.storyId;
+    const contributionId = req.params.contributionId;
+    db.query(`SELECT votes.story_id, count(votes.contribution_id), votes.vote, contributions.suggestion
+    FROM votes
+    JOIN contributions ON contributions.id = contribution_id
+    WHERE votes.story_id = $1 AND contributions.id = $2
+    GROUP BY votes.story_id, votes.vote, contributions.suggestion;`, [storyId, contributionId])
       .then(data => {
         const contributions = data.rows;
         //console.log(contributions)
@@ -32,7 +31,7 @@ module.exports = (db) => {
   });
   router.get("/:storyId", (req, res) => {
     storyId = req.params.storyId;
-    db.query(`SELECT contributions.suggestion, contributions.story_id, users.name, count(votes.vote)
+    db.query(`SELECT contributions.suggestion, contributions.story_id, users.name, count(votes.contribution_id)
     FROM contributions
     JOIN users ON users.id = user_id
     JOIN votes ON votes.id = contribution_id
@@ -41,7 +40,7 @@ module.exports = (db) => {
     ORDER BY contributions.id`, [storyId])
       .then(data => {
         const contributions = data.rows;
-        //console.log(contributions)
+        console.log("CCCCC: ", contributions[0].count)
         res.json(contributions);
       })
       .catch(err => {

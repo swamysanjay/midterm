@@ -28,7 +28,6 @@ CREATE TABLE contributions (
 CREATE TABLE votes (
   id SERIAL PRIMARY KEY NOT NULL,
   vote BOOLEAN,
-  story_id INTEGER REFERENCES stories(id) ON DELETE CASCADE,
   contribution_id INTEGER REFERENCES contributions(id) ON DELETE CASCADE,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
 );
