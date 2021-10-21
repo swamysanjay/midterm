@@ -39,13 +39,29 @@ $(() => {
       <div class="button-container">
         <button type="button" class="btn btn-link" style="color:black" data-id="${story.id}">Add to Story</button>
       </div>
+      <section id="contributions-container-${story.id}"></section>
+      <form id="contribution-form-${story.id}"></form>
     </div>
   </article>
   <br>`
       return $story;
   }
 
-let storyId;
+  let storyId;
+
+  // const loadContributions = (storyId) => {
+  //   $.ajax({
+  //     url: "/api/:storyId/contributions",
+  //     method: "GET",
+  //     datatype: "json",
+  //     success: () => {
+  //       renderContributions(contributions);
+  //     },
+  //     error: (error) => {
+  //       console.log(`error: ${error}`);
+  //     }
+  //   });
+  // }
 
   const renderStories = (stories) => {
     for (const story of stories) {
@@ -64,13 +80,31 @@ let storyId;
         datatype: "json",
         success: (contributions) => {
           console.log(contributions)
-          renderContributions(contributions);
-          $("#contribution-form").empty()
-          $("#contribution-form").append(`<textarea name="suggestion" id="contribution-text"></textarea>
+          renderContributions(contributions, storyId);
+          //TO GET THE FORM FOR A SPECIFIC STORY
+          $(`#contribution-form-${storyId}`).empty()
+          $(`#contribution-form-${storyId}`).append(`<textarea name="suggestion" id="contribution-text"></textarea>
           <div class="add-contribution-button">
             <button type="submit" class="btn btn-link" style="color:black">Add Contribution</button>
             <output name="counter" class="counter" for="contribution-text">200</output>
           </div>`);
+          //SET UP LISTENER. Listener must be inside the on-click
+          $(`#contribution-form-${storyId}`).submit(function(event) {
+            event.preventDefault();
+            const serializedData = $(this).serialize();
+            console.log("serializedData", serializedData);
+
+            $.post(`/api/contributions/${storyId}`, serializedData, (response) => {
+              //clears textbox after submission
+              $("#contribution-text").val("");
+              //rewrites 200 in the count
+              $(".counter").text("200");
+              //keeps textbox empty
+              $("#contributions-container").empty();
+              loadContributions();
+              //NEXT STEP: ONLY LOAD CONTRIBUTIONS FOR THAT SPECIFIC STORY
+            });
+          });
           //console.log(" output",contributions)
         },
         error: (error) => {
@@ -97,18 +131,29 @@ let storyId;
           <button type="button" class="btn btn-success" style="color: black;">Accept</button>
           <i class="fas fa-thumbs-up"> <span>${contribution.count}</span></i>
         </div>
-        <section id="contributions-container"></section>
       </article>
     </div>
     <br>`
   return $contribution;
   }
 
-  const renderContributions = (contributions) => {
-    $('#contributions-container').empty();
+//******* */
+// $('.fa-thumbs-up').click(function(event){
+//   event.preventDefault();
+//   console.log("event.target:", event.target)
+//   storyId
+//   console.log("storyId:", storyId);
+
+// //********* */
+
+
+  // $('.btn-success').hide();
+
+  const renderContributions = (contributions, storyId) => {
+    $(`#contributions-container-${storyId}`).empty();
     for (const contribution of contributions) {
       const $contribution = createContribution(contribution);
-      $('#contributions-container').append($contribution)
+      $(`#contributions-container-${storyId}`).append($contribution)
     };
   };
 
