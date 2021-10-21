@@ -9,6 +9,7 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
+  // api/contributions
   router.get("/", (req, res) => {
 
     //console.log(query);
@@ -18,6 +19,26 @@ module.exports = (db) => {
     JOIN votes ON votes.id = contribution_id
     WHERE votes.vote = true
     GROUP BY contributions.suggestion, contributions.story_id, users.name`)
+      .then(data => {
+        const contributions = data.rows;
+        //console.log(contributions)
+        res.json(contributions);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+  router.get("/:storyId", (req, res) => {
+    storyId = req.params.storyId;
+    db.query(`SELECT contributions.suggestion, contributions.story_id, users.name, count(votes.vote)
+    FROM contributions
+    JOIN users ON users.id = user_id
+    JOIN votes ON votes.id = contribution_id
+    WHERE contributions.story_id = $1
+    GROUP BY contributions.suggestion, contributions.story_id, users.name, contributions.id
+    ORDER BY contributions.id`, [storyId])
       .then(data => {
         const contributions = data.rows;
         //console.log(contributions)

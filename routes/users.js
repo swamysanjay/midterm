@@ -14,7 +14,7 @@ module.exports = (db) => {
     `)
       .then(data => {
         const users = data.rows;
-        console.log(users)
+        console.log("USERS:", users)
         res.json(users);
       })
       .catch(err => {

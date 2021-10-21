@@ -4,6 +4,10 @@ $seafoam: #72D6C9;
 $pink: #DF7599;
 $brown: #545149;
 
+.red {
+  background-color: red;
+}
+
 main {
   margin: auto;
   width: 100%;
@@ -58,8 +62,8 @@ main {
   }
 }
 
-.btn-success {
-  display: none;
+.badge-danger:focus {
+  background-color: grey;
 }
 
 h1 {

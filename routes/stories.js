@@ -17,6 +17,7 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+  //LINKS with renderStories ajax GET request in app.js
   router.get("/:storyId/contributions", (req, res) => {
     const storyId=req.params.storyId;
     db.query(`SELECT contributions.suggestion, contributions.story_id, users.name, count(votes.vote)

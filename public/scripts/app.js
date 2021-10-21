@@ -29,8 +29,7 @@ $(() => {
         <img class="story-image" src="${story.thumbnail_url}">
       </div>
       <div class="story-status">
-        <span class="badge badge-success">${story.status}</span>
-        <span class="badge badge-secondary">${story.status}</span>
+        <span class="badge badge-success" data-status="${story.status}">Complete</span>
       </div>
     </div>
     <div class="right-side">
@@ -47,21 +46,28 @@ $(() => {
       return $story;
   }
 
+  $('body').on("click", ".badge-success", function() {
+    $(this).text($(this).text() === 'Complete' ? 'In Progress' : 'Complete');
+    const status = $(this).attr('data-status');
+    console.log(status);
+    $(this).toggleClass('red')
+  });
+
   let storyId;
 
-  // const loadContributions = (storyId) => {
-  //   $.ajax({
-  //     url: "/api/:storyId/contributions",
-  //     method: "GET",
-  //     datatype: "json",
-  //     success: () => {
-  //       renderContributions(contributions);
-  //     },
-  //     error: (error) => {
-  //       console.log(`error: ${error}`);
-  //     }
-  //   });
-  // }
+  const loadContributions = (storyId) => {
+    $.ajax({
+      url:`/api/contributions/${storyId}`,
+      method: "GET",
+      datatype: "json",
+      success: (contributions) => {
+        renderContributions(contributions, storyId);
+      },
+      error: (error) => {
+        console.log(`error: ${error}`);
+      }
+    });
+  }
 
   const renderStories = (stories) => {
     for (const story of stories) {
@@ -70,19 +76,21 @@ $(() => {
     }
     $('.btn').click(function(event){
       event.preventDefault();
-      console.log("event.target:", event.target)
+      //event.target is the add to story button when clicked with the specific story_id
       storyId = $(event.target).attr("data-id");
-      console.log("event.target:", $(event.target));
+      //console.log("event.target:", $(event.target));
       console.log("storyId:", storyId);
       $.ajax({
         url: `/api/stories/${storyId}/contributions`,
         method: "GET",
         datatype: "json",
         success: (contributions) => {
-          console.log(contributions)
+          console.log("contributions:", contributions)
+          console.log("STORYID:", storyId)
           renderContributions(contributions, storyId);
           //TO GET THE FORM FOR A SPECIFIC STORY
           $(`#contribution-form-${storyId}`).empty()
+          console.log("contributions:", contributions)
           $(`#contribution-form-${storyId}`).append(`<textarea name="suggestion" id="contribution-text"></textarea>
           <div class="add-contribution-button">
             <button type="submit" class="btn btn-link" style="color:black">Add Contribution</button>
@@ -101,7 +109,7 @@ $(() => {
               $(".counter").text("200");
               //keeps textbox empty
               $("#contributions-container").empty();
-              loadContributions();
+              loadContributions(storyId);
               //NEXT STEP: ONLY LOAD CONTRIBUTIONS FOR THAT SPECIFIC STORY
             });
           });
@@ -138,39 +146,25 @@ $(() => {
   }
 
 //******* */
-// $('.fa-thumbs-up').click(function(event){
+// $('body').on("click", ".fa-thumbs-up", function(event){
 //   event.preventDefault();
 //   console.log("event.target:", event.target)
-//   storyId
-//   console.log("storyId:", storyId);
-  //  $('.btn-success').hide();
+// });
 
   const renderContributions = (contributions, storyId) => {
     $(`#contributions-container-${storyId}`).empty();
     for (const contribution of contributions) {
       const $contribution = createContribution(contribution);
-      $(`#contributions-container-${storyId}`).append($contribution)
+      $(`#contributions-container-${storyId}`).prepend($contribution)
     };
   };
 
-
-//"Add Contribution" button posts newly inputted suggestions to website
-  $("#contribution-form").submit(function(event) {
-    event.preventDefault();
-    const serializedData = $(this).serialize();
-    console.log("serializedData", serializedData);
-
-    $.post(`/api/contributions/${storyId}`, serializedData, (response) => {
-      //clears textbox after submission
-      $("#contribution-text").val("");
-      //rewrites 200 in the count
-      $(".counter").text("200");
-      //keeps textbox empty
-      $("#contributions-container").empty();
-      loadContributions();
-      //NEXT STEP: ONLY LOAD CONTRIBUTIONS FOR THAT SPECIFIC STORY
-    });
-  });
+//prevents harmful text inputs from altering the page
+const escape = function(str) {
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
 
 });
 
