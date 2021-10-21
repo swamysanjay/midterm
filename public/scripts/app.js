@@ -143,11 +143,7 @@ $(() => {
 //   console.log("event.target:", event.target)
 //   storyId
 //   console.log("storyId:", storyId);
-
-// //********* */
-
-
-  // $('.btn-success').hide();
+  //  $('.btn-success').hide();
 
   const renderContributions = (contributions, storyId) => {
     $(`#contributions-container-${storyId}`).empty();
