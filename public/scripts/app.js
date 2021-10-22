@@ -155,7 +155,6 @@ $(() => {
         </div>
         <div class="right-button-votes">
           ${alice === '1' ? `<button type="button" class="btn btn-success" style="color: black;" data-contributionId="${contribution.id}">Accept</button>` : ''  }
-
           <i class="fas fa-thumbs-up" data-vote="${contribution.id}"> <span id="votes">${contribution.vote}</span></i>
         </div>
       </article>
@@ -187,4 +186,3 @@ $(() => {
   };
 
 });
-
