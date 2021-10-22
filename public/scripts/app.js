@@ -21,7 +21,6 @@ $(() => {
   loadStories();
 
   const createStory = (story) => {
-    console.log(story)
     const $story = `
     <article class="story-parent">
     <div class="left-side">
@@ -29,7 +28,7 @@ $(() => {
         <img class="story-image" src="${story.thumbnail_url}">
       </div>
       <div class="story-status">
-        <span class="badge badge-success" data-status="${story.status}" data-id="${story.id}">Complete</span>
+        <span class="badge badge-danger" data-status="${story.status}" data-id="${story.id}">In Progress</span>
       </div>
     </div>
     <div class="right-side">
@@ -46,11 +45,11 @@ $(() => {
       return $story;
   }
 
-  $('body').on("click", ".badge-success", function() {
-    $(this).text($(this).text() === 'Complete' ? 'In Progress' : 'Complete');
+  $('body').on("click", ".badge-danger", function() {
+    $(this).text($(this).text() === 'In Progress' ? 'Complete' : 'In Progress');
     const status = $(this).attr('data-status');
     console.log(status);
-    $(this).toggleClass('red')
+    $(this).toggleClass('green')
   });
 
   let storyId;
@@ -68,13 +67,6 @@ $(() => {
       }
     });
   }
-
-  //prevents harmful text inputs from altering the page
-//   const escape = function(str) {
-//   let div = document.createElement("div");
-//   div.appendChild(document.createTextNode(str));
-//   return div.innerHTML;
-// };
 
   const renderStories = (stories) => {
     for (const story of stories) {
@@ -143,7 +135,6 @@ $(() => {
       const userId = document.cookie;
       const index = userId.length - 1
       const alice = userId[index];
-      console.log( )
     const $contribution = `
     <div class="previous-contributions">
       <article id="contribution-parent">
@@ -167,10 +158,6 @@ $(() => {
   return $contribution;
   }
 
-
-
-  //HIDE ACCEPT BUTTON. ONLY USERID 1 CAN SEE:
-  //   userID = req.session.user_id;
  $("body").on("click", ".btn-success", function(event) {
    event.preventDefault()
    const contributionId = event.target.getAttribute('data-contributionId');
