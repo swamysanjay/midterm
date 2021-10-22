@@ -45,12 +45,18 @@ $(() => {
       return $story;
   }
 
+  const userId = document.cookie;
+  const index = userId.length - 1
+  const alice = userId[index];
+
+  if (alice === '1') {
   $('body').on("click", ".badge-danger", function() {
     $(this).text($(this).text() === 'In Progress' ? 'Complete' : 'In Progress');
     const status = $(this).attr('data-status');
     console.log(status);
     $(this).toggleClass('green')
   });
+}
 
   let storyId;
 
