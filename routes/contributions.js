@@ -40,7 +40,7 @@ module.exports = (db) => {
     ORDER BY contributions.id`, [storyId])
       .then(data => {
         const contributions = data.rows;
-        console.log("CCCCC: ", contributions[0].count)
+        console.log("votes ", contributions[0].count)
         res.json(contributions);
       })
       .catch(err => {

@@ -70,11 +70,11 @@ $(() => {
   }
 
   //prevents harmful text inputs from altering the page
-  const escape = function(str) {
-  let div = document.createElement("div");
-  div.appendChild(document.createTextNode(str));
-  return div.innerHTML;
-};
+//   const escape = function(str) {
+//   let div = document.createElement("div");
+//   div.appendChild(document.createTextNode(str));
+//   return div.innerHTML;
+// };
 
   const renderStories = (stories) => {
     for (const story of stories) {
@@ -127,7 +127,23 @@ $(() => {
     });
    };
 
+   $('body').on("click", ".fa-thumbs-up", function(event){
+    const contributionId = $(event.target).attr("data-vote");
+    console.log("contributionID:", contributionId);
+    event.preventDefault();
+    console.log("event.target:", event.target)
+    $.post(`/api/votes/${contributionId}`)
+      .then(data => {
+        console.log("data:", data);
+        //$('#votes').append('data.vote');
+      });
+  });
+
     const createContribution = (contribution) => {
+      const userId = document.cookie;
+      const index = userId.length - 1
+      const alice = userId[index];
+      console.log( )
     const $contribution = `
     <div class="previous-contributions">
       <article id="contribution-parent">
@@ -137,11 +153,12 @@ $(() => {
           </div>
           <div class="right-name-suggestion">
             <h2>${contribution.name}</h2>
-            <p class= "story-text">${contribution.suggestion}</p>
+            <p class="story-text" id="suggestion-${contribution.id}">${contribution.suggestion}</p>
           </div>
         </div>
         <div class="right-button-votes">
-          <button type="button" class="btn btn-success" style="color: black;">Accept</button>
+          ${alice === '1' ? `<button type="button" class="btn btn-success" style="color: black;" data-contributionId="${contribution.id}">Accept</button>` : ''  }
+
           <i class="fas fa-thumbs-up" data-vote="${contribution.id}"> <span id="votes">${contribution.vote}</span></i>
         </div>
       </article>
@@ -150,17 +167,23 @@ $(() => {
   return $contribution;
   }
 
-  $('body').on("click", ".fa-thumbs-up", function(event){
-    const contributionId = $(event.target).attr("data-vote");
-    console.log(contributionId);
-    event.preventDefault();
-    //console.log("event.target:", event.target)
-    $.post(`/api/votes/${contributionId}`)
-      .then(data => {
-        console.log("data:", data);
-        //$('#votes').append('data.vote');
-      });
+
+
+  //HIDE ACCEPT BUTTON. ONLY USERID 1 CAN SEE:
+  //   userID = req.session.user_id;
+ $("body").on("click", ".btn-success", function(event) {
+   event.preventDefault()
+   const contributionId = event.target.getAttribute('data-contributionId');
+   const suggestion = $(`#suggestion-${contributionId}`).text()
+   $.ajax({
+    url: `/api/stories/${storyId}`,
+    method: 'PUT',
+    data: { suggestion },
+    success: (response) => {
+      console.log(response)
+   },
   });
+});
 
   const renderContributions = (contributions, storyId) => {
     $(`#contributions-container-${storyId}`).empty();

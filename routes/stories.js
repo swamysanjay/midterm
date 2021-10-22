@@ -17,6 +17,25 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+  router.put("/:storyId", (req, res) => {
+    const storyId = req.params.storyId;
+    const suggestion = req.body.suggestion;
+    console.log('suggest:', suggestion)
+    db.query(`SELECT * FROM stories WHERE id = $1`, [storyId])
+      .then(data => {
+        const story = data.rows[0];
+        console.log('story:', story);
+          db.query(`UPDATE stories
+        SET content = $1
+        WHERE id = $2`, [story.content + " " + suggestion, storyId])
+        res.json(story);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
   //LINKS with renderStories ajax GET request in app.js
   router.get("/:storyId/contributions", (req, res) => {
     const storyId = req.params.storyId;
